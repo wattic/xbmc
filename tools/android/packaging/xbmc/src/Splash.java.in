@@ -194,16 +194,16 @@ public class Splash extends Activity
           sendEmptyMessage(StartingXBMC);
           break;
         case CheckExternalStorage:
-          //if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()))
-          //{
+          if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()))
+          {
             mExternalStorageChecked = true;
             sendEmptyMessage(StorageChecked);
-          //}
-          //else
-          //{
-          //  startWatchingExternalStorage();
-          //  sendEmptyMessage(WaitingStorageChecked);
-          //}
+          }
+          else
+          {
+            startWatchingExternalStorage();
+            sendEmptyMessage(WaitingStorageChecked);
+          }
           break;
         case WaitingStorageChecked:
           mSplash.mTextView.setText("Waiting for external storage...");
@@ -1004,18 +1004,18 @@ public class Splash extends Activity
       return;
     }
 
-    //if (!mExternalStorageChecked)
-    //{
-      //startWatchingExternalStorage();
-      //mStateMachine.sendEmptyMessage(WaitingStorageChecked);
-    //}
-    //else
-    //{
+    if (!mExternalStorageChecked)
+    {
+      startWatchingExternalStorage();
+      mStateMachine.sendEmptyMessage(WaitingStorageChecked);
+    }
+    else
+    {
       if (!mCachingDone)
         new FillCache(this).execute();
       else
         mStateMachine.sendEmptyMessage(CachingDone);
-    //}
+    }
   }
 
   private boolean isAndroidTV()
