@@ -201,7 +201,7 @@ public class Splash extends Activity
           }
           else
           {
-            startWatchingExternalStorage();
+            、、startWatchingExternalStorage();
             sendEmptyMessage(WaitingStorageChecked);
           }
           break;
@@ -212,7 +212,7 @@ public class Splash extends Activity
         case StorageChecked:
           mSplash.mTextView.setText("External storage OK...");
           mExternalStorageChecked = true;
-          mSplash.stopWatchingExternalStorage();
+          //mSplash.stopWatchingExternalStorage();
           if (mSplash.mCachingDone)
             sendEmptyMessage(StartingXBMC);
           else
@@ -772,10 +772,7 @@ public class Splash extends Activity
     }
     else if (Build.VERSION.SDK_INT > 22)
     {
-      int permissionCheck;
-      permissionCheck = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-      if (permissionCheck == PERMISSION_GRANTED)
-        retVal = true;
+      retVal = true;
     }
     else
       retVal=  true;
@@ -791,11 +788,12 @@ public class Splash extends Activity
       case PERMISSION_RESULT_CODE:
       {
         // If request is cancelled, the result arrays are empty.
-        if (grantResults.length > 0
-                && grantResults[0] == PERMISSION_GRANTED)
-        {
-          mPermissionOK = true;
-        }
+        //if (grantResults.length > 0
+        //        && grantResults[0] == PERMISSION_GRANTED)
+        //{
+        //  mPermissionOK = true;
+        //}
+        mPermissionOK = true;
         mStateMachine.sendEmptyMessage(CheckingPermissionsDone);
         break;
       }
@@ -1006,7 +1004,7 @@ public class Splash extends Activity
 
     if (!mExternalStorageChecked)
     {
-      startWatchingExternalStorage();
+      //startWatchingExternalStorage();
       mStateMachine.sendEmptyMessage(WaitingStorageChecked);
     }
     else
