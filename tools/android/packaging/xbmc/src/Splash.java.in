@@ -201,7 +201,7 @@ public class Splash extends Activity
           }
           else
           {
-            、、startWatchingExternalStorage();
+            //startWatchingExternalStorage();
             sendEmptyMessage(WaitingStorageChecked);
           }
           break;
