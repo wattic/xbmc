@@ -765,10 +765,10 @@ public class Splash extends Activity
     boolean retVal = false;
     if (Build.VERSION.SDK_INT >= 33 || (Build.VERSION.SDK_INT >= 30 && !isAndroidTV()))
     {
-      if (Environment.isExternalStorageManager())
-      {
+      //if (Environment.isExternalStorageManager())
+      //{
         retVal = true;
-      }
+      //}
     }
     else if (Build.VERSION.SDK_INT > 22)
     {
